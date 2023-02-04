@@ -10,7 +10,7 @@ env:
   GitHubMail: ${{ secrets.GitHubMail }}
   GitHubName: ${{ secrets.GitHubName }}
 
-  GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
+  GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
 
   # Image name and tag. MUST be lowercase
   IMAGE_NAME: docker
@@ -31,7 +31,7 @@ jobs:
 
       - name: Logging in to Docker
         run: |
-          echo $GCF_AUTH_KEY | docker login ghcr.io -u $GitHubName --password-stdin
+          echo $GH_BOT_TOKEN | docker login ghcr.io -u $GitHubName --password-stdin
 
       - name: Building the Image
         run: |
