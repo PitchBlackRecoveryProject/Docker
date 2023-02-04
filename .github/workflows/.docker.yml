@@ -1,0 +1,43 @@
+name: Build & Push Docker Image
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+   
+env:
+  GitHubMail: ${{ secrets.GitHubMail }}
+  GitHubName: ${{ secrets.GitHubName }}
+
+  GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
+
+  # Image name and tag. MUST be lowercase
+  IMAGE_NAME: docker
+  IMAGE_TAG: latest
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configuring git
+        run: |
+          git config --global user.name $GitHubMail
+          git config --global user.email $GitHubName
+
+      - name: Logging in to Docker
+        run: |
+          echo $GCF_AUTH_KEY | docker login ghcr.io -u $GitHubName --password-stdin
+
+      - name: Building the Image
+        run: |
+          docker build -t ghcr.io/pitchblackrecoveryproject/${IMAGE_NAME}:${IMAGE_TAG} .
+          echo "Build Completed Successfully!"
+
+      - name: Pushing the Image
+        run: |
+          docker push ghcr.io/pitchblackrecoveryproject/${IMAGE_NAME}:${IMAGE_TAG}
