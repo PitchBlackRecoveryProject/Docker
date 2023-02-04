@@ -35,13 +35,6 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
 # Install git and ssh
 RUN sudo apt install git ssh repo -y
 
-# Configure git
-ENV GIT_USERNAME Sanju0910
-ENV GIT_EMAIL sreeshankar0910@gmail.com
-RUN \
-    git config --global user.name $GIT_USERNAME \
-&&  git config --global user.email $GIT_EMAIL
-
 # Update Packages
 RUN \
 sudo apt update
