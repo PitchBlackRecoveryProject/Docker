@@ -10,7 +10,7 @@ env:
   GitHubName: pitchblackrecoveryproject
   GitHubMail: ${{ secrets.GitHubMail }}
 
-  GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
 
   # Image name and tag. MUST be lowercase
   IMAGE_NAME: docker
