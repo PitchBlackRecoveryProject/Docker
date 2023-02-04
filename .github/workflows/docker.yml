@@ -11,20 +11,33 @@ env:
   GitHubMail: ${{ secrets.GitHubMail }}
   GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
   GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
+  
+  IMAGE_NAME: ubuntu
+  IMAGE_TAG: latest
 
 jobs:
   push:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      actions: write
+      checks: write
+      contents: write
+      deployments: write
+      id-token: write
+      issues: write
+      discussions: write
       packages: write
-
+      pages: write
+      pull-requests: write
+      repository-projects: write
+      security-events: write
+      statuses: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Logging in to Docker
         run: |
-          echo $GCF_AUTH_KEY | docker login ghcr.io -u $GitHubName --password-stdin
+          echo GH_BOT_TOKEN | docker login ghcr.io -u $GitHubName --password-stdin
       - name: Building the Image
         run: |
           docker build -t ghcr.io/${GitHubName}/${IMAGE_NAME}:${IMAGE_TAG} .
