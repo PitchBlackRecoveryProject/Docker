@@ -40,4 +40,4 @@ jobs:
 
       - name: Pushing the Image
         run: |
-          docker push ghcr.io/${GitHubName}/${IMAGE_NAME}:${IMAGE_TAG}
+         echo $GH_BOT_TOKEN | docker push ghcr.io/${GitHubName}/${IMAGE_NAME}:${IMAGE_TAG}
