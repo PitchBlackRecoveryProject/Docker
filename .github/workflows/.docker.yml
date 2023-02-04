@@ -36,4 +36,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${GitHubName}/${IMAGE_NAME}:${{IMAGE_TAG}
+          tags: ghcr.io/${GitHubName}/${IMAGE_NAME}:${IMAGE_TAG}
