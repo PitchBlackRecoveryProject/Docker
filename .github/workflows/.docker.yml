@@ -19,6 +19,8 @@ env:
 jobs:
   push:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
 
     steps:
       - name: Checkout
@@ -40,5 +42,4 @@ jobs:
 
       - name: Pushing the Image
         run: |
-         echo $GH_BOT_TOKEN | docker login ghcr.io -u $GitHubName --password-stdin
          docker push ghcr.io/${GitHubName}/${IMAGE_NAME}:${IMAGE_TAG}
