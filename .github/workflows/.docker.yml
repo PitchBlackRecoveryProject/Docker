@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
    
 env:
+  GitHubName: pitchblackrecoveryproject
   GitHubMail: ${{ secrets.GitHubMail }}
-  GitHubName: ${{ secrets.GitHubName }}
 
   GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
 
@@ -35,9 +35,9 @@ jobs:
 
       - name: Building the Image
         run: |
-          docker build -t ghcr.io/pitchblackrecoveryproject/${IMAGE_NAME}:${IMAGE_TAG} .
+          docker build -t ghcr.io/${GitHubName}/${IMAGE_NAME}:${IMAGE_TAG} .
           echo "Build Completed Successfully!"
 
       - name: Pushing the Image
         run: |
-          docker push ghcr.io/pitchblackrecoveryproject/${IMAGE_NAME}:${IMAGE_TAG}
+          docker push ghcr.io/${GitHubName}/${IMAGE_NAME}:${IMAGE_TAG}
