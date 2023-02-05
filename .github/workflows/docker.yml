@@ -9,7 +9,6 @@ on:
 env:
   GitHubName: pitchblackrecoveryproject
   GitHubMail: ${{ secrets.GitHubMail }}
-  GCF_AUTH_KEY: ${{ secrets.GCF_AUTH_KEY }}
   GH_BOT_TOKEN: ${{ secrets.GH_BOT_TOKEN }}
   
   IMAGE_NAME: ubuntu
