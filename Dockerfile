@@ -4,9 +4,6 @@ FROM ubuntu:latest
 # Working Directory
 WORKDIR /root
 
-# Maintainer
-MAINTAINER Sanju0910 <sreeshankar0910@gmail.com>
-
 # Delete the profile files (we'll copy our own in the next step)
 RUN \
 rm -f \
